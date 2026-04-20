@@ -24,12 +24,23 @@
   </head>
 
   <body>
-     <nav>
-      <%= link_to "Home", root_path %>
-      <%= link_to "New Post", new_post_path, class: "button button-primary" if authenticated? %>
-      <%= button_to "Log out", session_path, class: "button", method: :delete if authenticated? %>
-      <%= link_to "Login", new_session_path, class: "button" unless authenticated? %>
+     <nav class="main-nav">
+      <div class="main-nav_links">
+        <%= link_to "Club House", root_path, class: "logo" %>
+        <%#= link_to "Home", root_path %>
+      </div>
       
+      <% unless authenticated? %>
+        <div class="main-nav_buttons">
+          <%= link_to "Login", new_session_path, class: "button" %>
+          <%= link_to "Signup", sign_up_path, class: "button button-primary"%>
+        </div>
+      <% else %>
+        <div class="main-nav_buttons">
+          <%= link_to "New Post", new_post_path, class: "button button-primary"  %>
+          <%= button_to "Log out", session_path, class: "button", method: :delete %>
+        </div>
+      <% end %>
     </nav>
 
     <main>
