@@ -24,6 +24,16 @@
   </head>
 
   <body>
-    <%= yield %>
+     <nav>
+      <%= link_to "Home", root_path %>
+      <%= link_to "New Post", new_post_path, class: "button button-primary" if authenticated? %>
+      <%= button_to "Log out", session_path, class: "button", method: :delete if authenticated? %>
+      <%= link_to "Login", new_session_path, class: "button" unless authenticated? %>
+      
+    </nav>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
