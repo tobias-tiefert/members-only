@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :verify_user, only: %i[edit update destroy ]
   allow_unauthenticated_access only: %i[ index show ]
   def index
-    @posts = Post.all
+    @posts = Post.all.reverse
     @username = Current.user.username if authenticated?
   end
 
@@ -29,18 +30,30 @@ class PostsController < ApplicationController
   end
 
   def update
+    if @post.update(post_params)
+      redirect_to @post
+    else
+      flash.now[:alert] = "Post couldn't be saved."
+      render :edit, status: :unprocessable_content
+    end
   end
 
   def destroy
+    @post.destroy
+    redirect_to posts_path
   end
 
   private
+
+    def verify_user
+      redirect_to posts_path unless authenticated? && @post.user == Current.user
+    end
 
     def set_post
       @post = Post.find(params[:id])
     end
 
     def post_params
-      params.expect(post: %i[title text])
+      params.expect(post: %i[title text user_id])
     end
 end

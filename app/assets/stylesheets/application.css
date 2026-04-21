@@ -145,13 +145,68 @@ main form textarea{
 }
 .post-text{
   font-size: 1.4rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid coral;
+  padding-bottom: 2rem;
 }
 .post-title{
   font-size: 4rem;
+  line-height: 4.5rem;
+  margin-bottom: 1.25rem;
+}
+.author-info{
+  opacity: 0.8;
+  margin-top: 1rem;
 }
 
-.author-info{
-  border-top: 3px solid coral;
-  padding-top: 1rem;
+.posts{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  align-items: center;
+  margin: 5rem 0;
+  padding-bottom: 5rem;
+  border-bottom: 3px solid coral;
+
+}
+.post-card{
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0.6rem 1.3rem rgba(0, 0, 0, 0.1);
+  width: 70vw;
+  max-width: 600px;
+}
+.post-card h2 a{
+  color: coral;
+  text-decoration: none;
+  &:hover{
+    color: coral;
+  }
+}
+.post-card p{
+  font-size: 1.2rem;
+}
+.button-danger{
+  background-color: darkred;
+}
+.button-danger:hover{
+  background-color: red;
+}
+.post-after{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+
+}
+.post-actions{
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+.post-actions form{
+  width: auto;
+  margin: 0;
 }
