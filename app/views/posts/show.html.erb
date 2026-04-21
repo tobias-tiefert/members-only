@@ -1,0 +1,17 @@
+<h1 class="post-title">
+  <%= @post.title%>
+</h1>
+<p class="post-text">
+  <%= @post.text%>
+</p>
+
+<% if authenticated?%>
+  <div class="author-info">
+    <%=tag.span "Written by:" %>
+    <%= Current.user.username %>
+  </div>
+<% else %>
+  <div class="author-info">
+    <%=tag.span "Login to see who wrote this" %>
+  </div>  
+<% end %>

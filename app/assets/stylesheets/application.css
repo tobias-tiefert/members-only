@@ -139,3 +139,19 @@ main form div{
 label{
   line-height: 230%;
 }
+main form textarea{
+  width: 100%;
+  resize: vertical;
+}
+.post-text{
+  font-size: 1.4rem;
+  margin-bottom: 4rem;
+}
+.post-title{
+  font-size: 4rem;
+}
+
+.author-info{
+  border-top: 3px solid coral;
+  padding-top: 1rem;
+}

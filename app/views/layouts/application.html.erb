@@ -27,7 +27,12 @@
      <nav class="main-nav">
       <div class="main-nav_links">
         <%= link_to "Club House", root_path, class: "logo" %>
-        <%#= link_to "Home", root_path %>
+        <% if authenticated?%>
+          <div>
+            <%=tag.span "Hi" %>
+            <%= Current.user.username %>
+          </div>
+        <% end %>
       </div>
       
       <% unless authenticated? %>
