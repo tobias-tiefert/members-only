@@ -1,0 +1,25 @@
+
+<div id="posts" class="posts">
+    <% @posts.each do |post| %> 
+      <div class="post-card">
+        <h2><%= link_to post.title, post_path(post.id) %></h2>
+        <%= tag.p truncate(post.text, length: 300)%>
+        <%= button_to "Read more", post_path(post.id), class: "button", method: :get%>
+        <span>Written </span>
+        <%= time_ago_in_words(post.created_at)%>
+        <span>ago</span>
+        <% if authenticated?%>
+          <span class="author-info">
+            <%=tag.span "by" %>
+            <%= post.user.username unless post.user == Current.user %> 
+            <%=tag.span "You" if post.user == Current.user %>
+          </span>
+        <% else %>
+          <span class="author-info">
+            <%=tag.span "- login to see who wrote this" %>
+          </span>  
+        <% end %>
+        
+      </div>
+    <% end %>
+</div>

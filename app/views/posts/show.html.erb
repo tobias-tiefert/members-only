@@ -1,0 +1,32 @@
+<%= link_to "Back", posts_path %>
+<h1 class="post-title">
+  <%= @post.title%>
+</h1>
+<p class="post-text">
+  <%= @post.text%>
+</p>
+
+<div class="post-after">
+  <div>
+    <span>Written </span>
+    <%= time_ago_in_words(@post.created_at)%>
+    <span>ago</span>
+    <% if authenticated?%>
+      <span class="author-info">
+        <%=tag.span " by" %>
+        <%= @post.user.username unless @post.user == Current.user %>
+        <%=tag.span "You" if @post.user == Current.user %>
+      </span>
+    <% else %>
+      <span class="author-info">
+        <%=tag.span "– login to see who wrote this" %>
+      </span>
+  <% end %>
+  </div>
+  <% if authenticated? && @post.user == Current.user%>
+    <div class="post-actions">
+      <%= link_to "Edit", edit_post_path, class: "button"  %>
+      <%= button_to "Delete", post_path, class: "button button-danger", method: :delete, data: { turbo_confirm: "Are you sure you want to delete this post?" } %>
+    </div>
+  <% end %>
+</div>
